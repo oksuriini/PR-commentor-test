@@ -1,27 +1,22 @@
 package main
 
 import (
-	"flag"
+	"fmt"
 	"os"
+	"strings"
 )
 
 // this is test program to count words in file
-var fileName string
-
-func init() {
-	flag.StringVar(&fileName, "filename", "", "Name of the file from which to count words")
-	flag.Parse()
-}
 
 func main() {
-	readFile(fileName)
-}
-
-func readFile(fileName string) ([]byte, error) {
-	fileContent, err := os.ReadFile(fileName)
+	fileContent, err := os.ReadFile("testfile.txt")
 	if err != nil {
-		return nil, err
+		fmt.Println(err)
+		fmt.Println("Error occurred")
+		os.Exit(1)
 	}
 
-	return fileContent, nil
+	words := strings.Split(string(fileContent), " ")
+	fmt.Println("Word count is:")
+	fmt.Println(len(words))
 }
