@@ -16,7 +16,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	words := strings.Split(string(fileContent), " ")
+	words := strings.Fields(string(fileContent))
+
 	fmt.Println("Word count is:")
 	fmt.Println(len(words))
 }
